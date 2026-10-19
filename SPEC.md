@@ -20,7 +20,7 @@ Runs gpu-bench-jax-xla-forwardpass.py: a small JAX/XLA transformer forward pass 
 | head_dim | `--head-dim` | smoke=16, baseline=64, extended=64 | 64 | From Parameter list; see Execution Description With Parameters. |
 | batch_size | `--batch-size` | smoke=1, baseline=8, extended=8 | 8 | From Parameter list; see Execution Description With Parameters. |
 | warmup_iters | `--warmup-iters` | smoke=1, baseline=3, extended=5 | 3 | From Parameter list; see Execution Description With Parameters. |
-| num_iterations | `--num-iterations` | smoke=3, baseline=380000, extended=760000 | 380000 | From Parameter list; see Execution Description With Parameters. |
+| num_iterations | `--num-iterations` | smoke=3, baseline=380000, extended=588000 | 380000 | From Parameter list; see Execution Description With Parameters. |
 | seed | `--seed` | smoke=42, baseline=42, extended=42 | 42 | From Parameter list; see Execution Description With Parameters. |
 
 ## Invocation
