@@ -47,14 +47,11 @@ Validation and logging:
 Workload options:
   --device-id <value>            Override device_id
   --dtype <value>            Override dtype
-  --model-config <value>            Override model_config
-  --activation-fn <value>            Override activation_fn
-  --vocab-size <value>            Override vocab_size
   --sequence-len <value>            Override sequence_len
   --hidden-size <value>            Override hidden_size
   --num-layers <value>            Override num_layers
   --num-heads <value>            Override num_heads
-  --head-dim <value>            Override head_dim
+  --vocab-size <value>            Override vocab_size
   --batch-size <value>            Override batch_size
   --warmup-iters <value>            Override warmup_iters
   --num-iterations <value>            Override num_iterations
@@ -94,14 +91,11 @@ OUTPUT_FORMAT=""
 SAVE_OPTIONS_FILE=""
 DEVICE_ID=""
 DTYPE=""
-MODEL_CONFIG=""
-ACTIVATION_FN=""
-VOCAB_SIZE=""
 SEQUENCE_LEN=""
 HIDDEN_SIZE=""
 NUM_LAYERS=""
 NUM_HEADS=""
-HEAD_DIM=""
+VOCAB_SIZE=""
 BATCH_SIZE=""
 WARMUP_ITERS=""
 NUM_ITERATIONS=""
@@ -128,14 +122,11 @@ while [[ $# -gt 0 ]]; do
     --save-options-file) SAVE_OPTIONS_FILE="${2:-}"; shift 2 ;;
     --device-id) DEVICE_ID="${2:-}"; shift 2 ;;
     --dtype) DTYPE="${2:-}"; shift 2 ;;
-    --model-config) MODEL_CONFIG="${2:-}"; shift 2 ;;
-    --activation-fn) ACTIVATION_FN="${2:-}"; shift 2 ;;
-    --vocab-size) VOCAB_SIZE="${2:-}"; shift 2 ;;
     --sequence-len) SEQUENCE_LEN="${2:-}"; shift 2 ;;
     --hidden-size) HIDDEN_SIZE="${2:-}"; shift 2 ;;
     --num-layers) NUM_LAYERS="${2:-}"; shift 2 ;;
     --num-heads) NUM_HEADS="${2:-}"; shift 2 ;;
-    --head-dim) HEAD_DIM="${2:-}"; shift 2 ;;
+    --vocab-size) VOCAB_SIZE="${2:-}"; shift 2 ;;
     --batch-size) BATCH_SIZE="${2:-}"; shift 2 ;;
     --warmup-iters) WARMUP_ITERS="${2:-}"; shift 2 ;;
     --num-iterations) NUM_ITERATIONS="${2:-}"; shift 2 ;;
@@ -180,14 +171,11 @@ PY
 
 DEVICE_ID="${DEVICE_ID:-$(yaml_get device_id)}"
 DTYPE="${DTYPE:-$(yaml_get dtype)}"
-MODEL_CONFIG="${MODEL_CONFIG:-$(yaml_get model_config)}"
-ACTIVATION_FN="${ACTIVATION_FN:-$(yaml_get activation_fn)}"
-VOCAB_SIZE="${VOCAB_SIZE:-$(yaml_get vocab_size)}"
 SEQUENCE_LEN="${SEQUENCE_LEN:-$(yaml_get sequence_len)}"
 HIDDEN_SIZE="${HIDDEN_SIZE:-$(yaml_get hidden_size)}"
 NUM_LAYERS="${NUM_LAYERS:-$(yaml_get num_layers)}"
 NUM_HEADS="${NUM_HEADS:-$(yaml_get num_heads)}"
-HEAD_DIM="${HEAD_DIM:-$(yaml_get head_dim)}"
+VOCAB_SIZE="${VOCAB_SIZE:-$(yaml_get vocab_size)}"
 BATCH_SIZE="${BATCH_SIZE:-$(yaml_get batch_size)}"
 WARMUP_ITERS="${WARMUP_ITERS:-$(yaml_get warmup_iters)}"
 NUM_ITERATIONS="${NUM_ITERATIONS:-$(yaml_get num_iterations)}"
@@ -199,14 +187,11 @@ BENCHMARK_RUN_COMMAND="bash run_benchmark.sh --${PROFILE}"
 [[ "${VALIDATE}" -eq 1 ]] && BENCHMARK_RUN_COMMAND+=" --validate"
 [[ -n "${DEVICE_ID}" ]] && BENCHMARK_RUN_COMMAND+=" --device-id $(printf %q "${DEVICE_ID}")"
 [[ -n "${DTYPE}" ]] && BENCHMARK_RUN_COMMAND+=" --dtype $(printf %q "${DTYPE}")"
-[[ -n "${MODEL_CONFIG}" ]] && BENCHMARK_RUN_COMMAND+=" --model-config $(printf %q "${MODEL_CONFIG}")"
-[[ -n "${ACTIVATION_FN}" ]] && BENCHMARK_RUN_COMMAND+=" --activation-fn $(printf %q "${ACTIVATION_FN}")"
-[[ -n "${VOCAB_SIZE}" ]] && BENCHMARK_RUN_COMMAND+=" --vocab-size $(printf %q "${VOCAB_SIZE}")"
 [[ -n "${SEQUENCE_LEN}" ]] && BENCHMARK_RUN_COMMAND+=" --sequence-len $(printf %q "${SEQUENCE_LEN}")"
 [[ -n "${HIDDEN_SIZE}" ]] && BENCHMARK_RUN_COMMAND+=" --hidden-size $(printf %q "${HIDDEN_SIZE}")"
 [[ -n "${NUM_LAYERS}" ]] && BENCHMARK_RUN_COMMAND+=" --num-layers $(printf %q "${NUM_LAYERS}")"
 [[ -n "${NUM_HEADS}" ]] && BENCHMARK_RUN_COMMAND+=" --num-heads $(printf %q "${NUM_HEADS}")"
-[[ -n "${HEAD_DIM}" ]] && BENCHMARK_RUN_COMMAND+=" --head-dim $(printf %q "${HEAD_DIM}")"
+[[ -n "${VOCAB_SIZE}" ]] && BENCHMARK_RUN_COMMAND+=" --vocab-size $(printf %q "${VOCAB_SIZE}")"
 [[ -n "${BATCH_SIZE}" ]] && BENCHMARK_RUN_COMMAND+=" --batch-size $(printf %q "${BATCH_SIZE}")"
 [[ -n "${WARMUP_ITERS}" ]] && BENCHMARK_RUN_COMMAND+=" --warmup-iters $(printf %q "${WARMUP_ITERS}")"
 [[ -n "${NUM_ITERATIONS}" ]] && BENCHMARK_RUN_COMMAND+=" --num-iterations $(printf %q "${NUM_ITERATIONS}")"
@@ -255,14 +240,11 @@ run_collection() {
   grep -q -- '--output-format' <<<"${help}" && collect_args+=(--output-format "${OUTPUT_FORMAT}")
   grep -q -- '--device-id' <<<"${help}" && collect_args+=(--device-id "${DEVICE_ID}")
   grep -q -- '--dtype' <<<"${help}" && collect_args+=(--dtype "${DTYPE}")
-  grep -q -- '--model-config' <<<"${help}" && collect_args+=(--model-config "${MODEL_CONFIG}")
-  grep -q -- '--activation-fn' <<<"${help}" && collect_args+=(--activation-fn "${ACTIVATION_FN}")
-  grep -q -- '--vocab-size' <<<"${help}" && collect_args+=(--vocab-size "${VOCAB_SIZE}")
   grep -q -- '--sequence-len' <<<"${help}" && collect_args+=(--sequence-len "${SEQUENCE_LEN}")
   grep -q -- '--hidden-size' <<<"${help}" && collect_args+=(--hidden-size "${HIDDEN_SIZE}")
   grep -q -- '--num-layers' <<<"${help}" && collect_args+=(--num-layers "${NUM_LAYERS}")
   grep -q -- '--num-heads' <<<"${help}" && collect_args+=(--num-heads "${NUM_HEADS}")
-  grep -q -- '--head-dim' <<<"${help}" && collect_args+=(--head-dim "${HEAD_DIM}")
+  grep -q -- '--vocab-size' <<<"${help}" && collect_args+=(--vocab-size "${VOCAB_SIZE}")
   grep -q -- '--batch-size' <<<"${help}" && collect_args+=(--batch-size "${BATCH_SIZE}")
   grep -q -- '--warmup-iters' <<<"${help}" && collect_args+=(--warmup-iters "${WARMUP_ITERS}")
   grep -q -- '--num-iterations' <<<"${help}" && collect_args+=(--num-iterations "${NUM_ITERATIONS}")

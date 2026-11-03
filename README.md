@@ -85,7 +85,7 @@ Three operator scripts from [`garys-gpu-benchmarks/gpu-bench-suite`](https://git
 
 ## 1. Overview
 
-Runs gpu-bench-jax-xla-forwardpass.py: a small JAX/XLA transformer forward pass on synthetic tokens. dtype, sequence_len, hidden_size, num_layers, num_heads, batch_size, warmup_iters, num_iterations, and seed come from yaml. Smoke uses a tiny config (e.g. seq16 hidden64 1 layer). Sweep dimensions: device_id, dtype, model_config, activation_fn, vocab_size, sequence_len, hidden_size, num_layers.
+Runs gpu-bench-jax-xla-forwardpass.py: a small JAX/XLA transformer forward pass on synthetic tokens. dtype, sequence_len, hidden_size, num_layers, num_heads, batch_size, warmup_iters, num_iterations, and seed come from yaml. Smoke uses a tiny config (e.g. seq16 hidden64 1 layer). Sweep dimensions: device_id, dtype, sequence_len, hidden_size, num_layers, num_heads, vocab_size, batch_size.
 
 ## 2. What It Validates
 

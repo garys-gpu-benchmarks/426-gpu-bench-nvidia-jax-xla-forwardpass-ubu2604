@@ -2,7 +2,7 @@
 
 ## Execution Description
 
-Runs gpu-bench-jax-xla-forwardpass.py: a small JAX/XLA transformer forward pass on synthetic tokens. dtype, sequence_len, hidden_size, num_layers, num_heads, batch_size, warmup_iters, num_iterations, and seed come from yaml. Smoke uses a tiny config (e.g. seq16 hidden64 1 layer). Sweep dimensions: device_id, dtype, model_config, activation_fn, vocab_size, sequence_len, hidden_size, num_layers.
+Runs gpu-bench-jax-xla-forwardpass.py: a small JAX/XLA transformer forward pass on synthetic tokens. dtype, sequence_len, hidden_size, num_layers, num_heads, batch_size, warmup_iters, num_iterations, and seed come from yaml. Smoke uses a tiny config (e.g. seq16 hidden64 1 layer). Sweep dimensions: device_id, dtype, sequence_len, hidden_size, num_layers, num_heads, vocab_size, batch_size.
 
 ## Parameters
 
@@ -10,14 +10,11 @@ Runs gpu-bench-jax-xla-forwardpass.py: a small JAX/XLA transformer forward pass 
 | --- | --- | --- | --- | --- |
 | device_id | `--device-id` | smoke=0, baseline=0, extended=0 | 0 | From Parameter list; see Execution Description With Parameters. |
 | dtype | `--dtype` | smoke=FP16, baseline=BF16, extended=FP32 | BF16 | From Parameter list; see Execution Description With Parameters. |
-| model_config | `--model-config` | smoke=custom, baseline=custom, extended=custom | custom | From Parameter list; see Execution Description With Parameters. |
-| activation_fn | `--activation-fn` | smoke=gelu, baseline=gelu, extended=gelu | gelu | From Parameter list; see Execution Description With Parameters. |
-| vocab_size | `--vocab-size` | smoke=32000, baseline=32000, extended=32000 | 32000 | From Parameter list; see Execution Description With Parameters. |
 | sequence_len | `--sequence-len` | smoke=16, baseline=128, extended=128 | 128 | From Parameter list; see Execution Description With Parameters. |
 | hidden_size | `--hidden-size` | smoke=64, baseline=512, extended=512 | 512 | From Parameter list; see Execution Description With Parameters. |
 | num_layers | `--num-layers` | smoke=1, baseline=4, extended=4 | 4 | From Parameter list; see Execution Description With Parameters. |
 | num_heads | `--num-heads` | smoke=4, baseline=8, extended=8 | 8 | From Parameter list; see Execution Description With Parameters. |
-| head_dim | `--head-dim` | smoke=16, baseline=64, extended=64 | 64 | From Parameter list; see Execution Description With Parameters. |
+| vocab_size | `--vocab-size` | smoke=32000, baseline=32000, extended=32000 | 32000 | From Parameter list; see Execution Description With Parameters. |
 | batch_size | `--batch-size` | smoke=1, baseline=8, extended=8 | 8 | From Parameter list; see Execution Description With Parameters. |
 | warmup_iters | `--warmup-iters` | smoke=1, baseline=3, extended=5 | 3 | From Parameter list; see Execution Description With Parameters. |
 | num_iterations | `--num-iterations` | smoke=3, baseline=380000, extended=588000 | 380000 | From Parameter list; see Execution Description With Parameters. |

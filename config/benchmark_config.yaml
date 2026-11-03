@@ -13,9 +13,6 @@ sweep:
     smoke: FP16
     baseline: BF16
     extended: FP32
-  model_config: custom
-  activation_fn: gelu
-  vocab_size: 32000
   sequence_len:
     smoke: 16
     baseline: 128
@@ -32,10 +29,7 @@ sweep:
     smoke: 4
     baseline: 8
     extended: 8
-  head_dim:
-    smoke: 16
-    baseline: 64
-    extended: 64
+  vocab_size: 32000
   batch_size:
     smoke: 1
     baseline: 8
