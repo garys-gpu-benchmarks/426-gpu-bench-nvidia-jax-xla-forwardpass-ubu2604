@@ -3,24 +3,24 @@
 **Main goal:** Measure JAX/XLA transformer forward-pass performance  
 **Tools:** Run gpu-bench-jax-xla-forwardpass.py via collect_jax_xla.py
 
-Reference results measured by the maintainer on the system shown in each section (generator TEMPLATE_00_141 · recorded 2026-11-14). Your own runs write `results/RESULTS_ACTUAL.md` in the same format.
+Reference results measured by the maintainer on the system shown in each section (generator TEMPLATE_00_142 · recorded 2026-11-16). Your own runs write `results/RESULTS_ACTUAL.md` in the same format.
 
 > Smoke runs use deliberately small sizes. They check that the workload installs and runs end to end; their numbers are not performance results. Baseline and extended are.
 
 <!-- profile:smoke -->
 ## smoke
 
-- **System:** 1× NVIDIA H100 PCIe (81559 MiB) · Intel(R) Xeon(R) Platinum 8352Y CPU @ 2.20GHz · Ubuntu 26.04.1 LTS · kernel 6.8.0-138-generic · driver 595.91.07
-- **Run:** 2026-11-14T11:49:37Z · status **PASS** (exit 0)
-- **Time (mm:ss):** setup 02:38 · benchmark 00:01 · whole run 02:58
-- **Source:** run 426_20261114_114937
+- **System:** 1× NVIDIA H100 NVL (95830 MiB) · AMD EPYC 9374F 32-Core Processor · Ubuntu 26.04.1 LTS · kernel 6.8.0-138-generic · driver 595.91.07
+- **Run:** 2026-11-16T11:33:25Z · status **PASS** (exit 0)
+- **Time (mm:ss):** setup 01:16 · benchmark 00:01 · whole run 01:26
+- **Source:** run 426_20261116_113325
 - **Command:** `bash run_benchmark.sh --smoke --device-id 0 --dtype FP16 --sequence-len 16 --hidden-size 64 --num-layers 1 --num-heads 4 --vocab-size 32000 --batch-size 1 --warmup-iters 1 --num-iterations 3 --seed 42`
 
 | # | Metric | Result |
 |---|---|---|
-| 1 | Forward-pass latency, ms (forward_latency_msec) | 0.113145 |
-| 2 | Throughput, tokens/s (tokens_per_sec) | 141411.872904 |
-| 3 | Modeled TFLOPS, full forward pass (tflops) | 0.58907 |
-| 4 | XLA compilation time, ms (jit_compile_msec) | 1602.237222 |
+| 1 | Forward-pass latency, ms (forward_latency_msec) | 0.089841 |
+| 2 | Throughput, tokens/s (tokens_per_sec) | 178091.557007 |
+| 3 | Modeled TFLOPS, full forward pass (tflops) | 0.741864 |
+| 4 | XLA compilation time, ms (jit_compile_msec) | 1331.99895 |
 | 5 | Peak HBM, GB (peak_hbm_gb) | 0.14254 |
 <!-- /profile:smoke -->
